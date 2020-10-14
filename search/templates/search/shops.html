@@ -2,15 +2,6 @@
 {% load static %}
 
 {% block content %}
-<!-- .page-header -->
-<header class="page-header">
-    <h1 class="logo">
-        <div class="logo-title">口コミ de お店検索</div>
-        <div class="logo-subtitle">あなたに合った飲食店を口コミから検索</div>
-    </h1>
-</header>
-<!-- /.page-header -->
-
 
 <div class="search-section">
     <a href="{% url 'how_to_use' %}">使い方を見る</a>
@@ -27,6 +18,15 @@
                 <button type="submit" class="btn btn-primary" name='action' value="save">検索する</button>
             </div>
         </form>
+    </div>
+</div>
+
+<div class="shop-list">
+    <div class="list-title">
+        <h2>{{ area }} で 「{{ kuchikomi }}」 の口コミを含むお店一覧</h2>
+    </div>
+    <div class="list-content">
+        <p><p>{{ result|linebreaksbr }}</p></p>
     </div>
 </div>
 {% endblock %}

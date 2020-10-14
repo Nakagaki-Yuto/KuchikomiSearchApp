@@ -114,7 +114,7 @@ body {
   
   /* footer */
 .footer {
-    padding: 20px;
+    margin: 200px auto 50px;
   }
   
   .copyright {
@@ -152,3 +152,6 @@ body {
     margin-top: 5px;
     letter-spacing: .2em;
   }
+
+  /*search-section*/
+  
