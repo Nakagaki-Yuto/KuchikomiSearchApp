@@ -29,6 +29,23 @@ def shops(request):
     if request.POST['kuchikomi']:
         kuchikomi = request.POST['kuchikomi']
 
+
+    """
+    result = [
+        {
+            "shop_id: "店舗ID"
+            "shop_name": "店舗名称", 
+            "shop_image1": "店舗画像1",
+            "shop_url": "店舗URL", 
+            "category_name_l": "カテゴリー"
+            "areaname_l": "エリア", 
+            "comment": "口コミ", 
+            "update_date": "投稿日時"
+        }
+    ]
+
+    """
+
     result = []
     offset_page = 0
     while len(result) <= 10:
@@ -38,7 +55,8 @@ def shops(request):
             'keyid': API_Key,
             'area': area,
             'hit_per_page': '50',       
-            'offset_page': offset_page
+            'offset_page': offset_page,
+            'sort': 1
         }
         
 
@@ -58,35 +76,21 @@ def shops(request):
             break 
 
         for i in range(count):
-            if re.search(kuchikomi, result_review["response"][str(i)]["photo"]["comment"]) :
-                result.append({
-                "shop_id": result_review["response"][str(i)]["photo"]["shop_id"],
-                "shop_name": result_review["response"][str(i)]["photo"]["shop_name"],
-                "shop_url": result_review["response"][str(i)]["photo"]["shop_url"],
-                "areaname_l": result_review["response"][str(i)]["photo"]["areaname_l"],
-                "comment": result_review["response"][str(i)]["photo"]["comment"],
-                "update_date": result_review["response"][str(i)]["photo"]["update_date"]
-            })
+            if re.search(kuchikomi, result_review["response"][str(i)]["photo"]["comment"]):
+                    result.append({
+                        "shop_id": result_review["response"][str(i)]["photo"]["shop_id"],
+                        "shop_name": result_review["response"][str(i)]["photo"]["shop_name"],
+                        "shop_url": result_review["response"][str(i)]["photo"]["shop_url"],
+                        "areaname_l": result_review["response"][str(i)]["photo"]["areaname_l"],
+                        "comment": result_review["response"][str(i)]["photo"]["comment"],
+                        "update_date": str(result_review["response"][str(i)]["photo"]["update_date"])[0:10]
+                    })
+                    
       
-        if len(result) >= 5:
+        if len(result) >= 10:
                 break
     
-    """
-    result = [
-        {
-            "shop_id: "店舗ID"
-            "shop_name": "店舗名称", 
-            "shop_image1": "店舗画像1",
-            "shop_url": "店舗URL", 
-            "category_name_l": "カテゴリー"
-            "areaname_l": "エリア", 
-            "comment": "口コミ", 
-            "total_score": "評価", 
-            "update_date": "投稿日時"
-        }
-    ]
-
-    """
+ 
 
     # 口コミがヒットした店舗の情報を取得
     for i in range(len(result)):
@@ -98,9 +102,9 @@ def shops(request):
         # レストラン検索APIへリクエスト
         result_shop = requests.get(url_shop, query)
         result_shop = result_shop.json()
-        print(result_shop)
-        result[i]["shop_image1"] = result_shop["rest"][0]["image_url"]["shop_image1"]
-        result[i]["category_name_l"] = result_shop["rest"][0]["category"]
-            
 
-    return render(request, 'search/shops.html', {'area': area, 'kuchikomi': kuchikomi, 'shop_cnt': len(result), 'result': result})
+        result[i]["shop_image"] = result_shop["rest"][0]["image_url"]["shop_image1"]
+        result[i]["category_name_l"] = result_shop["rest"][0]["category"]
+
+
+    return render(request, 'search/shops.html', {'area': area, 'kuchikomi': kuchikomi, 'shop_cnt': len(result), 'shops': result})

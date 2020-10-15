@@ -21,12 +21,35 @@
     </div>
 </div>
 
-<div class="shop-list">
-    <div class="list-title">
-        <h2>{{ area }} で 「{{ kuchikomi }}」 の口コミを含むお店一覧</h2>
+<!-- .shop-section -->
+<div class="shop-section">
+    <div class="shop-title">
+        <h2><strong>{{ area }}</strong> で <strong>{{ kuchikomi }}</strong> の口コミを含むお店一覧</h2>
     </div>
-    <div class="list-content">
-        <p><p>{{ result|linebreaksbr }}</p></p>
+    {% if shop_cnt == 0 %}
+    <div class="message">店舗が見つかりませんでした。</div>
+    {% else %}
+    <div class="message">{{ shop_cnt }}件見つかりました</div>
+    {% endif %}
+    
+    {% for shop in shops %}
+    <div class="shop-list">
+        <img class="shop-photo" src="{{ shop.shop_image }}" alt="画像なし">
+        <div class="shop-list-body">
+            <div class="shop-name">{{ shop.shop_name }}</div>
+            <div class="shop-intro">カテゴリ:{{ shop.category_name_l }}　エリア:{{ shop.areaname_l }}</div>
+            <div class="shop-comment">
+                <div class="comment">{{ shop.comment }}</div>
+                <div class="update-date">{{ shop.update_date }} に投稿</div>
+            </div>
+            <div class="shop-url">
+                <a href="{{ shop.shop_url }}" target="_blank">詳細はこちら（ぐるなび店舗ページへ）</a>
+                
+            </div>
+        </div>
     </div>
+    {% endfor %}
 </div>
+<!-- /.shop-section -->
+
 {% endblock %}
