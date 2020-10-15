@@ -159,6 +159,10 @@ img {
   font-size: 15px;
 }
 
+.search-section p {
+  margin-top: 10px;
+  font-size: 14px;
+}
 /*shop-section*/
 .shop-section {
   margin: 30px 10px;
@@ -265,4 +269,10 @@ img {
 
 .signup-btn {
   margin-top: 30px;
+}
+
+.signup-section a, .login-section a {
+  font-size: 16px;
+  margin-bottom: 20px;
+  padding: 0;
 }
