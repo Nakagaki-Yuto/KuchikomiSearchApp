@@ -3,6 +3,11 @@ import requests
 import json
 import re
 import math
+from django.contrib.auth import login, authenticate
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect
+
 
 def search(request):
     return render(request, 'search/search_screen.html', {})
@@ -10,6 +15,21 @@ def search(request):
 def how_to_use(request):
     return render(request, 'search/how_to_use.html', {})
 
+def signup(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            return redirect('/')
+    else:
+        form = UserCreationForm()
+    return render(request, 'registration/signup.html', {'form': form})
+
+@login_required
 def shops(request):
     # アクセスキー
     API_Key = "b053657c5ffee9d9b3ce1d625807760b"

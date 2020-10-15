@@ -1,0 +1,14 @@
+{% extends "search/base.html" %}
+
+{% block content %}
+<div class="signup-section">
+    <div class="signup-body">
+        <h4>アカウントの登録</h4>
+        <form method="post">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <button class="signup-btn" type="submit">登録</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
