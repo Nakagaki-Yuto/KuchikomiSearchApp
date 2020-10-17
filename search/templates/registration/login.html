@@ -4,8 +4,8 @@
     <div class="login-section">
         <div class="login-body">
             <h4>アカウントのログイン</h4>
-            <a href="{% url 'signup' %}" class="btn btn-link">アカウントの登録がまだの方はこちら</a><br>
-            <a href="{% url 'social:begin' 'google-oauth2' %}" class="btn btn-link">Googleアカウントでのログインはこちら</a>
+            <a href="{% url 'signup' %}" class="btn btn-danger">アカウントの登録がまだの方はこちら</a><br>
+            <a href="{% url 'social:begin' 'google-oauth2' %}" class="btn btn-danger">Googleアカウントでのログインはこちら</a>
             
             {% if form.errors %}
                 <p>ユーザーネームまたはパスワードが間違っています</p>

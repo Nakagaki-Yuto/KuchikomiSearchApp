@@ -4,7 +4,7 @@
 <div class="signup-section">
     <div class="signup-body">
         <h4>アカウントの登録</h4>
-        <a href="{% url 'social:begin' 'google-oauth2' %}" class="btn btn-link">Googleアカウントでの登録はこちら</a>
+        <a href="{% url 'social:begin' 'google-oauth2' %}" class="btn btn-danger">Googleアカウントでの登録はこちら</a>
         <form method="post">
           {% csrf_token %}
           {{ form.as_p }}

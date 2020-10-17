@@ -28,6 +28,10 @@ img {
   border-style: none;
 }
 
+.btn-danger {
+  padding: 3px 8px;
+}
+
 /*navbar*/
 .navbar {
   position: fixed;
@@ -276,6 +280,7 @@ img {
   width: 150px;
   margin: 70px;
 }
+
 /*アカウント登録回り*/
 .signup-section, .login-section {
   margin: 100px 15px;
@@ -306,5 +311,5 @@ img {
 .signup-section a, .login-section a {
   font-size: 16px;
   margin-bottom: 20px;
-  padding: 0;
+  width: 350px;
 }

@@ -7,6 +7,11 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
+from django.contrib.auth.views import PasswordChangeView, PasswordChangeDoneView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views import generic
+from django.urls import reverse_lazy
+from .forms import MyPasswordChangeForm
 
 
 def SearchView(request):
@@ -136,3 +141,15 @@ def ShopsView(request):
 
 
     return render(request, 'search/shops.html', {'area': area, 'kuchikomi': kuchikomi, 'shop_cnt': len(result), 'shops': result})
+
+
+class PasswordChange(PasswordChangeView):
+    """パスワード変更"""
+    form_class = MyPasswordChangeForm
+    success_url = reverse_lazy('password_change_done')
+    template_name = 'registration/password_change.html'
+
+
+def PasswordChangeDoneView(request):
+    """パスワード変更確認"""
+    return render(request, 'search/password_change_done.html', {})
