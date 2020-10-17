@@ -21,8 +21,8 @@ from search import views as search_views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('search.urls')),
-    path('signup/', search_views.signup, name='signup'),
-    path('accounts/login/', views.LoginView.as_view(), name = 'login'),
-    path('accounts/logout/', views.LogoutView.as_view(next_page = '/'), name = 'logout'),
-    path('oauth/', include('social_django.urls', namespace='social')),
+    path('signup/', search_views.SignupView, name='signup'),
+    path('login/', views.LoginView.as_view(), name = 'login'),
+    path('logout/', views.LogoutView.as_view(next_page = '/'), name = 'logout'),
+    path('oauth/', include('social_django.urls', namespace = 'social')),
 ]

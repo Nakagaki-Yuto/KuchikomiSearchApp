@@ -1,0 +1,18 @@
+{% extends 'search/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="mypage-section">
+    <div class="mypage-body">
+        <div class="mypage-text">
+            <h4>マイページ</h4>
+        </div>
+    </div>
+    <div class="mypage-buttons">
+        <a href="{% url 'history' %}" class="btn btn-danger">検索履歴</a>
+        <a href="{% url 'how_to_use' %}" class="btn btn-danger">パスワード変更</a>
+    </div>
+</div>
+
+{% endblock %}

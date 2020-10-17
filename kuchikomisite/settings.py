@@ -136,7 +136,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-LOGIN_URL = 'account/login'
+LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/'
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '1056172925919-dooa6i7e3dhhn4q8rq2aa0rpgg06qpaa.apps.googleusercontent.com' # クライアントID

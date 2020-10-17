@@ -9,13 +9,21 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
 
-def search(request):
+def SearchView(request):
     return render(request, 'search/search_screen.html', {})
     
-def how_to_use(request):
+def HowToUseView(request):
     return render(request, 'search/how_to_use.html', {})
 
-def signup(request):
+@login_required
+def MypageView(request):
+    return render(request, 'search/mypage.html', {})
+
+@login_required
+def HistoryView(request):
+    return render(request, 'search/history.html', {})
+
+def SignupView(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
@@ -30,7 +38,7 @@ def signup(request):
     return render(request, 'registration/signup.html', {'form': form})
 
 @login_required
-def shops(request):
+def ShopsView(request):
     # アクセスキー
     API_Key = "b053657c5ffee9d9b3ce1d625807760b"
 
