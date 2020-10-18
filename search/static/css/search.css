@@ -29,7 +29,7 @@ img {
 }
 
 .btn-danger {
-  padding: 3px 8px;
+  padding: 4px 12px;
 }
 
 /*navbar*/
@@ -115,6 +115,7 @@ img {
     height: 86vh;
     user-select: none;
     margin: 0;
+    border-bottom: none;
   }
   
 .logo {
@@ -277,16 +278,16 @@ img {
 }
 
 .mypage-buttons .btn {
-  width: 150px;
-  margin: 70px;
+  width: 237px;
+  margin: 60px;
 }
 
 /*アカウント登録回り*/
-.signup-section, .login-section {
+.signup-section, .login-section, .password-change-section, .password-change-done-section {
   margin: 100px 15px;
 }
 
-.signup-body, .login-body {
+.signup-body, .login-body, .password-change-body, .password-change-done-body {
   max-width: 1000px;
   text-align: left;
   margin : 100px auto;
@@ -295,16 +296,16 @@ img {
   justify-content: space-between;
 }
 
-.signup-section h4, .login-section h4 {
+.signup-section h4, .login-section h4, .password-change-section h4 {
   background: linear-gradient(transparent 80%, rgb(248, 74, 74) 20%);
   margin-bottom: 40px;
 }
 
-.login-form {
+.login-form .password-change-form {
   margin-bottom: 30px;
 }
 
-.signup-btn {
+.signup-btn, .password-change-section button, .password-change-done-section a {
   margin-top: 30px;
 }
 
