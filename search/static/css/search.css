@@ -32,6 +32,11 @@ img {
   padding: 4px 12px;
 }
 
+.favorite-btn{
+  padding-left: 7px;
+  color: rgb(248, 74, 74);
+}
+
 /*navbar*/
 .navbar {
   position: fixed;
@@ -178,9 +183,13 @@ img {
   margin: 30px 10px;
 }
 
-.message, .shop-title {
-    margin-left: 20px;
-    margin-top: 20px;
+.shop-message, .shop-title {
+  max-width: 1000px;
+  text-align: center;
+  margin: 20px auto;
+  display: flex;
+  justify-content: space-between;
+  padding-left: 15px;
 }
 
 .shop-list {
@@ -188,8 +197,6 @@ img {
   text-align: center;
   margin : 10px auto;
   display: flex;
-  align-items: center;
-  flex-wrap: wrap;
   justify-content: space-between;
   padding: 30px 10px;
   border: solid 2px rgb(209, 208, 208);
@@ -225,6 +232,63 @@ img {
 }
 
 .shop-url, .update-date {
+  text-align: right;
+}
+
+/*favorite-shop-section*/
+.favorite-shop-section {
+  margin: 30px 10px;
+}
+
+.favorite-shop-message, .favorite-shop-title {
+  max-width: 1000px;
+  text-align: center;
+  margin: 20px auto;
+  display: flex;
+  justify-content: space-between;
+  padding-left: 15px;
+}
+
+.favorite-shop-list {
+  max-width: 1000px;
+  text-align: center;
+  margin : 10px auto;
+  display: flex;
+  justify-content: space-between;
+  padding: 30px 10px;
+  border: solid 2px rgb(209, 208, 208);
+}
+
+.favorite-shop-photo {
+  width: 180px;
+  margin-right: 20px;
+  box-shadow: 0 0 25px 0 #d9d9d9;
+} 
+
+.favorite-shop-list-body {
+  flex: 1;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.favorite-shop-name {
+  font-weight: bold;
+  font-size: 18px;
+  background: linear-gradient(transparent 80%, rgb(248, 74, 74) 20%);
+}
+
+.favorite-shop-pr {
+  margin: 5px 0;
+  padding: 7px;
+  background-color: rgb(250, 241, 241);
+  border: solid 2px rgb(248, 74, 74);
+}
+
+.favorite-shop-intro, .favorite-shop-url {
+  font-size: 13px;
+}
+
+.favorite-shop-url {
   text-align: right;
 }
 

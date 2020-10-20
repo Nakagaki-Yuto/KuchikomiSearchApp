@@ -1,0 +1,43 @@
+{% extends 'search/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- .favorite-shop-section -->
+<div class="favorite-shop-section section">
+    <div class="favorite-shop-title">
+        <h4>お気に入り店舗一覧</h4>
+    </div>
+    {% if favoriting_cnt == 0 %}
+    <div class="favorite-shop-message">お気に入り店舗がありません</div>
+    {% endif %}
+
+    {% for favoriting_shop in favoriting_shops %}
+    <div class="favorite-shop-list">
+        <img class="favorite-shop-photo" src="{{ favoriting_shop.shop_image }}" alt="画像なし">
+        <div class="favorite-shop-list-body">
+            <div class="favorite-shop-name">
+                {{ favoriting_shop.shop_name }}
+                {% if favoriting_shop.is_favorite > 0 %}
+                <a href="{% url 'favorite' favoriting_shop.shop_id %}" class="favorite-btn">★</a>
+                {% else %}
+                <a href="{% url 'favorite' favoriting_shop.shop_id %}" class="favorite-btn">☆</a>
+                {% endif %}
+            </div>
+            <div class="favorite-shop-intro">カテゴリ:{{ favoriting_shop.category_name }}　エリア:{{ favoriting_shop.areaname }}</div>
+            <div class="favorite-shop-pr">
+                <div class="pr">{{ favoriting_shop.pr }}</div>
+            </div>
+
+            <div class="favorite-shop-url">
+                <a href="{{ favoriting_shop.shop_url }}" target="_blank">詳細はこちら（ぐるなび店舗ページへ）</a>
+                
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+</div>
+<!-- /.shop-section -->
+
+{% endblock %}

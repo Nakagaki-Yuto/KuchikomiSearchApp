@@ -140,4 +140,4 @@ LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/'
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '1056172925919-dooa6i7e3dhhn4q8rq2aa0rpgg06qpaa.apps.googleusercontent.com' # クライアントID
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'xiZ7vj8YdKp3mPaDVp41x18D' # クライアント シークレット
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'xiZ7vj8YdKp3mPaDVp41x18D'  # クライアント シークレット

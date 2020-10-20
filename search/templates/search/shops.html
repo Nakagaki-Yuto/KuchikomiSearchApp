@@ -29,19 +29,26 @@
 <!-- .shop-section -->
 <div class="shop-section section">
     <div class="shop-title">
-        <h3><strong>{{ area }}</strong> で <strong>{{ kuchikomi }}</strong> の口コミを含むお店一覧</h3>
+        <h4><strong>{{ area }}</strong> で <strong>{{ kuchikomi }}</strong> の口コミを含むお店一覧</h4>
     </div>
     {% if shop_cnt == 0 %}
-    <div class="message">店舗が見つかりませんでした。</div>
+    <div class="shop-message">店舗が見つかりませんでした。</div>
     {% else %}
-    <div class="message">{{ shop_cnt }}件見つかりました</div>
+    <div class="shop-message">{{ shop_cnt }}件見つかりました</div>
     {% endif %}
     
     {% for shop in shops %}
     <div class="shop-list">
         <img class="shop-photo" src="{{ shop.shop_image }}" alt="画像なし">
         <div class="shop-list-body">
-            <div class="shop-name">{{ shop.shop_name }}</div>
+            <div class="shop-name">
+                {{ shop.shop_name }}
+                {% if shop.is_favorite > 0 %}
+                <a href="{% url 'favorite' shop.shop_id %}" class="favorite-btn">★</a>
+                {% else %}
+                <a href="{% url 'favorite' shop.shop_id %}"class="favorite-btn">☆</a>
+                {% endif %}
+            </div>
             <div class="shop-intro">カテゴリ:{{ shop.category_name_l }}　エリア:{{ shop.areaname_l }}</div>
             <div class="shop-comment">
                 <div class="comment">{{ shop.comment }}</div>
