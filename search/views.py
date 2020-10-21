@@ -13,17 +13,13 @@ from django.views import generic
 from django.urls import reverse_lazy
 from .forms import MyPasswordChangeForm
 from .models import Favorite
-from django.http import HttpResponse
 
 
-# アクセスキー
-API_Key = "b053657c5ffee9d9b3ce1d625807760b"
+API_Key = "b053657c5ffee9d9b3ce1d625807760b" # アクセスキー
 
-# 口コミ検索APIのURL
-url_review = "https://api.gnavi.co.jp/PhotoSearchAPI/v3/"
+url_review = "https://api.gnavi.co.jp/PhotoSearchAPI/v3/" # 口コミ検索APIのURL
 
-# 店舗検索APIのURL
-url_shop = "https://api.gnavi.co.jp/RestSearchAPI/v3/"
+url_shop = "https://api.gnavi.co.jp/RestSearchAPI/v3/" # 店舗検索APIのURL
 
 
 def SearchView(request):
@@ -61,19 +57,18 @@ def SignupView(request):
 def ShopsView(request):
     """検索結果の取得"""
 
-    # パラメータの設定
-    
+    # パラメータの設定   
     if request.POST['area']:
         area = request.POST['area']
         if area == " " or area == "　":
             area = "渋谷"
 
-    
     if request.POST['kuchikomi']:
         kuchikomi = request.POST['kuchikomi'].split()
         if kuchikomi == []:
             kuchikomi = ["ビール"]
 
+    result = []
     """
     result = [
         {
@@ -91,10 +86,10 @@ def ShopsView(request):
 
     """
 
-    result = []
-    offset_page = 0
+    offset_page = 0  # 取得ページ数
+    
+    # 検索結果が十個を超えるまで繰り返す
     while len(result) <= 10:
-
         offset_page += 1
         query = {
             'keyid': API_Key,
@@ -109,7 +104,7 @@ def ShopsView(request):
         result_review = requests.get(url_review, query)
         result_review = result_review.json()
 
-        # 検索ワードが含まれている口コミを探す
+        # 取得ページ数の設定
         if int(result_review["response"]["total_hit_count"]) < 50:
             count = int(result_review["response"]["total_hit_count"])
         else:
@@ -120,6 +115,7 @@ def ShopsView(request):
         if offset_page == pages or offset_page == 20:
             break 
         
+        # 検索ワードが含まれる口コミを探す
         for i in range(count):
             cnt = 0
             for word in kuchikomi:
@@ -142,8 +138,6 @@ def ShopsView(request):
         
         if len(result) >= 10:
                     break
-    
- 
 
     # 口コミがヒットした店舗の情報を取得
     for i in range(len(result)):
@@ -161,17 +155,19 @@ def ShopsView(request):
 
     return render(request, 'search/shops.html', {'area': area, 'kuchikomi': " ".join(kuchikomi), 'shop_cnt': len(result), 'shops': result})
 
+
 @login_required
 def FavoriteView(request, shop_id):
+    """お気に入り機能"""
     is_favorite = Favorite.objects.filter(user_id=request.user).filter(shop_id=shop_id).count()
 
     print(shop_id)
-    # unfavorite
+    # お気に入り解除
     if is_favorite > 0:
         favoriting = Favorite.objects.get(user_id=request.user, shop_id=shop_id)
         favoriting.delete()
 
-    # favorite
+    # お気に入り登録
     else:
         favorite = Favorite()
         favorite.user_id = request.user

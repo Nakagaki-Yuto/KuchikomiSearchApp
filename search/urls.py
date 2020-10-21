@@ -10,5 +10,4 @@ urlpatterns = [
     path('favorite_shops/', views.FavoriteShopsView, name='favorite_shops'),
     path('password_change/', views.PasswordChange.as_view(), name='password_change'), 
     path('password_change/done/', views.PasswordChangeDoneView, name='password_change_done'),
-    
 ]
