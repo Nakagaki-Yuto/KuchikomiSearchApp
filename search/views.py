@@ -161,7 +161,6 @@ def FavoriteView(request, shop_id):
     """お気に入り機能"""
     is_favorite = Favorite.objects.filter(user_id=request.user).filter(shop_id=shop_id).count()
 
-    print(shop_id)
     # お気に入り解除
     if is_favorite > 0:
         favoriting = Favorite.objects.get(user_id=request.user, shop_id=shop_id)
