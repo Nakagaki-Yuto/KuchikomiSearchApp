@@ -25,6 +25,11 @@
                 <li class="navbar-item"><a class="navbar-link" href="{% url 'login' %}">ログイン</a></li>               
                 {% endif %}
             </ul>
+            {% if request.user.is_authenticated %}
+            <div class="navbar-log navbar-item">
+                <div class="navbar-userid">{{ request.user }}<br>でログイン中</div>
+            </div>
+            {% endif %}
         </nav>
         <!-- /.navbar -->
 

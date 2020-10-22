@@ -24,7 +24,7 @@ url_shop = "https://api.gnavi.co.jp/RestSearchAPI/v3/" # 店舗検索APIのURL
 
 def SearchView(request):
     """トップページ"""
-    return render(request, 'search/search_screen.html', {})
+    return render(request, 'search/search_screen.html', {'request': request})
     
 
 def HowToUseView(request):
