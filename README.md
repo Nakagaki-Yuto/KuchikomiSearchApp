@@ -5,11 +5,11 @@
 
 <br>
 
-* [口コミ de 検索](https://kuchikomisearchapp.herokuapp.com/)<br>
+[口コミ de 検索](https://kuchikomisearchapp.herokuapp.com/)<br>
 
- デモ用アカウント<br>
- ユーザー名: testuser1<br>
- パスワード: kuchikomipass
+  デモ用アカウント<br>
+  ユーザー名: testuser1<br>
+  パスワード: kuchikomipass
 
 <br>
  
