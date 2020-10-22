@@ -2,6 +2,7 @@
 # 口コミ検索アプリ
 
 ぐるなびapiを活用し、「エリア」と「口コミ」から飲食店を検索できるアプリケーションを作成しました。
+
 <br>
  
 # Features
@@ -14,7 +15,8 @@
 
 * お気に入り店舗登録機能<br>
 　「☆」を押すことで店舗をお気に入り登録できる。マイページからお気に入り登録店舗の一覧を見ることが出来る。
-<br>
+ 
+ <br>
  
 # Requirement
 
@@ -43,6 +45,7 @@
 * sqlparse==0.4.1
 * urllib3==1.25.11
 * whitenoise==5.2.0
+
 <br>
 
 # Usage
@@ -55,6 +58,7 @@ python manage.py runserver
 
 ユーザー名: testuser
 パスワード: kuchikomipass
+
 <br>
  
 # Author
