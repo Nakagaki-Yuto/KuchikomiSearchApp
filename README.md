@@ -2,7 +2,7 @@
 # 口コミ検索アプリ
 
 ぐるなびapiを活用し、「エリア」と「口コミ」から飲食店を検索できるアプリケーションを作成しました。
-  <br>
+<br>
  
 # Features
 
@@ -43,7 +43,7 @@
 * sqlparse==0.4.1
 * urllib3==1.25.11
 * whitenoise==5.2.0
- <br>
+<br>
 
 # Usage
  
@@ -55,7 +55,7 @@ python manage.py runserver
 
 ユーザー名: testuser
 パスワード: kuchikomipass
-  <br>
+<br>
  
 # Author
  
