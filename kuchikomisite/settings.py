@@ -91,8 +91,8 @@ WSGI_APPLICATION = 'kuchikomisite.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'kuchikomisite',
         'USER': 'name',
         'PASSWORD': '',
         'HOST': 'localhost',
@@ -150,3 +150,12 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'xiZ7vj8YdKp3mPaDVp41x18D'  # クライアン
 
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
+
+
+try:
+    from .local_settings import *
+except ImportError:
+    pass
+
+if not DEBUG:
+    SECRET_KEY = os.environ['SECRET_KEY']
