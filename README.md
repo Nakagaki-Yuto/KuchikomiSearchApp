@@ -3,7 +3,7 @@
 
 ぐるなびapiを活用し、「エリア」と「口コミ」から飲食店を検索できるアプリケーションを作成しました。<br>
 
-[口コミ de 検索](https://kuchikomisearchapp.herokuapp.com/)<br>
+* [口コミ de 検索](https://kuchikomisearchapp.herokuapp.com/)<br>
 
 デモ用アカウント<br>
 ユーザー名: testuser1<br>
