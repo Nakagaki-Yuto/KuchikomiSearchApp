@@ -4,7 +4,8 @@
 ぐるなびapiを活用し、「エリア」と「口コミ」から飲食店を検索できるアプリケーションを作成しました。
  
  
-# 概要
+ 
+# Features
 
 * 口コミ検索機能<br>
 　「エリア」と「検索ワード」を入力することで、ぐるなびに投稿されている口コミの中から、該当するものを表示する。「検索ワード」は複数単語の入力にも対応。
@@ -15,6 +16,7 @@
 * お気に入り店舗登録機能
 　「☆」を押すことで店舗をお気に入り登録できる。マイページからお気に入り登録店舗の一覧を見ることが出来る。
 
+ 
  
 # Requirement
 
@@ -44,13 +46,20 @@
 * urllib3==1.25.11
 * whitenoise==5.2.0
 
+
+
 # Usage
  
 ```bash
-git clone https://github.com/Nakagaki-Yuto/Portfolio.git
-cd Portfolio
+git clone https://github.com/Nakagaki-Yuto/KuchikomiSearchApp.git
+cd KuchikomiSearchApp
 python manage.py runserver
 ```
+
+ユーザー名: testuser
+パスワード: kuchikomipass
+ 
+ 
  
 # Author
  
