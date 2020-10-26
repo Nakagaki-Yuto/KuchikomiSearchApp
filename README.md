@@ -56,7 +56,7 @@
 
 <br>
 
-### Usage
+# Usage
  
 ```bash
 git clone https://github.com/Nakagaki-Yuto/KuchikomiSearchApp.git
@@ -66,7 +66,7 @@ python manage.py runserver
 
 <br>
  
-### Author
+# Author
  
 * 中垣祐人
 * 同志社大学
