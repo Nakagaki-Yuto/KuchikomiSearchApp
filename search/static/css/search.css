@@ -216,7 +216,10 @@ img {
 
 .shop-photo {
   width: 180px;
+  height: 180px;
   margin-right: 20px;
+  display: inline-block;
+  vertical-align: middle;
   box-shadow: 0 0 25px 0 #d9d9d9;
 } 
 
@@ -224,6 +227,8 @@ img {
   flex: 1;
   margin: 0 auto;
   text-align: left;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 .shop-name {
@@ -273,7 +278,10 @@ img {
 
 .favorite-shop-photo {
   width: 180px;
+  height: 180px;
   margin-right: 20px;
+  display: inline-block;
+  vertical-align: middle;
   box-shadow: 0 0 25px 0 #d9d9d9;
 } 
 
@@ -281,6 +289,8 @@ img {
   flex: 1;
   margin: 0 auto;
   text-align: left;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 .favorite-shop-name {
