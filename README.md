@@ -1,8 +1,8 @@
 
-### 口コミ検索アプリ
+# 口コミ検索アプリ
 
 ぐるなびapiを活用し、「エリア」と「口コミ」から飲食店を検索できるアプリケーションを作成しました。<br>
-
+※検索の速度を早くするためにアルゴリズムを模索中です。
 <br>
 
 「[口コミ de 検索](https://kuchikomisearchapp.herokuapp.com/)」<br>
@@ -13,7 +13,7 @@
 
 <br>
  
-### Features
+# Features
 
 * 口コミ検索機能<br>
 　「エリア」と「検索ワード」を入力することで、ぐるなびに投稿されている口コミの中から、該当するものを表示する。「検索ワード」は複数単語の入力にも対応。
@@ -26,7 +26,7 @@
  
  <br>
  
-### Requirement
+# Requirement
 
 * certifi==2020.6.20
 * cffi==1.14.3
@@ -56,7 +56,7 @@
 
 <br>
 
-### Usage
+# Usage
  
 ```bash
 git clone https://github.com/Nakagaki-Yuto/KuchikomiSearchApp.git
@@ -66,7 +66,7 @@ python manage.py runserver
 
 <br>
  
-### Author
+# Author
  
 * 中垣祐人
 * 同志社大学
