@@ -63,7 +63,7 @@ def ShopsView(request):
     if request.POST['kuchikomi']:
         kuchikomi = request.POST['kuchikomi'].split()
         if kuchikomi == []:
-            kuchikomi = ["ビール"]
+            kuchikomi = ["おすすめ"]
 
     result = []
     """
