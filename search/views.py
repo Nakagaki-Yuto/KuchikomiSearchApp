@@ -1,7 +1,6 @@
 from django.shortcuts import render
 import requests
 import json
-import re
 import math
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
@@ -16,9 +15,7 @@ from .models import Favorite
 
 
 API_Key = "b053657c5ffee9d9b3ce1d625807760b" # アクセスキー
-
 url_review = "https://api.gnavi.co.jp/PhotoSearchAPI/v3/" # 口コミ検索APIのURL
-
 url_shop = "https://api.gnavi.co.jp/RestSearchAPI/v3/" # 店舗検索APIのURL
 
 
@@ -70,7 +67,7 @@ def ShopsView(request):
 
     result = []
     """
-    result = [
+    result = (
         {
             "shop_id: "店舗ID"
             "shop_name": "店舗名称", 
@@ -82,14 +79,13 @@ def ShopsView(request):
             "shop_image1": "店舗画像1",
             "category_name_l": "カテゴリー"
         }
-    ]
-
+    )
     """
 
     offset_page = 0  # 取得ページ数
     
-    # 検索結果が十個を超えるまで繰り返す
-    while len(result) <= 10:
+    # 検索結果が5個を超えるまで繰り返す
+    for loop in range(20):
         offset_page += 1
         query = {
             'keyid': API_Key,
@@ -97,20 +93,21 @@ def ShopsView(request):
             'hit_per_page': '50',       
             'offset_page': offset_page,
             'sort': 1
-        }
-        
+        } 
 
         # 口コミ検索APIへリクエスト
         result_review = requests.get(url_review, query)
         result_review = result_review.json()
 
+        total_hit_count = int(result_review["response"]["total_hit_count"])
+
         # 取得ページ数の設定
-        if int(result_review["response"]["total_hit_count"]) < 50:
-            count = int(result_review["response"]["total_hit_count"])
+        if total_hit_count < 50:
+            count = total_hit_count
         else:
             count = 50
 
-        pages = math.ceil(int(result_review["response"]["total_hit_count"]) / 50)
+        pages = math.ceil(total_hit_count / 50)
         
         if offset_page == pages or offset_page == 20:
             break 
@@ -119,39 +116,38 @@ def ShopsView(request):
         for i in range(count):
             cnt = 0
             for word in kuchikomi:
-                if re.search(word, result_review["response"][str(i)]["photo"]["comment"]):
+                if word in result_review["response"][str(i)]["photo"]["comment"]:
                     cnt += 1
                     if cnt == len(kuchikomi):
+                        # 口コミがヒットした店舗の情報を取得する
+                        query = {
+                            'keyid': API_Key,
+                            'id': result_review["response"][str(i)]["photo"]["shop_id"]
+                        }
+
+                        # レストラン検索APIへリクエスト
+                        result_shop = requests.get(url_shop, query)
+                        result_shop = result_shop.json()
+
                         result.append({
-                            "shop_id": result_review["response"][str(i)]["photo"]["shop_id"],
+                            "shop_id": query["id"],
                             "shop_name": result_review["response"][str(i)]["photo"]["shop_name"],
                             "shop_url": result_review["response"][str(i)]["photo"]["shop_url"],
                             "areaname_l": result_review["response"][str(i)]["photo"]["areaname_l"],
                             "comment": result_review["response"][str(i)]["photo"]["comment"],
                             "update_date": str(result_review["response"][str(i)]["photo"]["update_date"])[0:10],
-                            "is_favorite": Favorite.objects.filter(user_id=request.user).filter(shop_id=result_review["response"][str(i)]["photo"]["shop_id"]).count()
+                            "is_favorite": Favorite.objects.filter(user_id=request.user).filter(shop_id=result_review["response"][str(i)]["photo"]["shop_id"]).count(),
+                            "shop_image": result_shop["rest"][0]["image_url"]["shop_image1"],
+                            "category_name_l": result_shop["rest"][0]["category"]
                         })
+
                     else:
                         continue
                 else:
                     break
         
-        if len(result) >= 10:
+        if len(result) >= 5:
                     break
-
-    # 口コミがヒットした店舗の情報を取得
-    for i in range(len(result)):
-        query = {
-            'keyid': API_Key,
-            'id': result[i]["shop_id"]
-        }
-
-        # レストラン検索APIへリクエスト
-        result_shop = requests.get(url_shop, query)
-        result_shop = result_shop.json()
-
-        result[i]["shop_image"] = result_shop["rest"][0]["image_url"]["shop_image1"]
-        result[i]["category_name_l"] = result_shop["rest"][0]["category"]
 
     return render(request, 'search/shops.html', {'area': area, 'kuchikomi': " ".join(kuchikomi), 'shop_cnt': len(result), 'shops': result})
 
