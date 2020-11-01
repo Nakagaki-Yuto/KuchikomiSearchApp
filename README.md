@@ -5,7 +5,7 @@
 ※検索の速度を早くするためにアルゴリズムを模索中です。
 <br>
 
-「[口コミ de 検索](https://kuchikomisearchapp.herokuapp.com/)」<br>
+【URL】[口コミ de 検索](https://kuchikomisearchapp.herokuapp.com/)<br>
 
   デモ用アカウント<br>
   ユーザー名: testuser1<br>
