@@ -10,12 +10,22 @@
             {% csrf_token %}
             <div class="form-input" name="form-input">
                 <label>エリア:</label>
-                <input type="text" class="area" name="area" placeholder="例. 渋谷" required>
+                <input type="text" class="area" name="area" id="areaid" placeholder="例. 渋谷" required>
                 <label>検索ワード: </label>
-                <input type="text" class="kuchikomi" name="kuchikomi" placeholder="例. おすすめ" required>
+                <input type="text" class="kuchikomi" name="kuchikomi" id="kuchikomiid" placeholder="例. おすすめ" required>
             </div>
             <div>
-                <button type="submit" class="btn btn-danger" name='action' value="save">検索する</button>
+                <button type="submit" class="btn btn-danger" name='action' value="save" onclick="this.innerHTML=searching()">検索する</button>
+                <script>
+                    var searching = function(){
+                        if(document.getElementById("areaid").value && document.getElementById("kuchikomiid").value){
+                            console.log("pushed")
+                            return "検索中";
+                        }else{
+                            return "検索する";
+                        }
+                    }
+                </script>
                 <p>※検索には時間がかかることがあります</p>
             </div>
             <div class="how-to">
