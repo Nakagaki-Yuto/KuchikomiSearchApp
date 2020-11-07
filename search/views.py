@@ -203,16 +203,19 @@ def FavoriteShopsView(request):
         result_shop = requests.get(url_shop, query)
         result_shop = result_shop.json()
 
-        result.append({
-            "shop_id": favoriting_shops[i],
-            "shop_name": result_shop["rest"][0]["name"],
-            "shop_url": result_shop["rest"][0]["url"],
-            "areaname": result_shop["rest"][0]["code"]["areaname_s"],
-            "category_name": result_shop["rest"][0]["category"],
-            "shop_image": result_shop["rest"][0]["image_url"]["shop_image1"],
-            "pr": result_shop["rest"][0]["pr"]["pr_short"],
-            "is_favorite": Favorite.objects.filter(user_id=request.user).filter(shop_id=favoriting_shops[i]).count()
-        })
+        try:
+            result.append({
+                "shop_id": favoriting_shops[i],
+                "shop_name": result_shop["rest"][0]["name"],
+                "shop_url": result_shop["rest"][0]["url"],
+                "areaname": result_shop["rest"][0]["code"]["areaname_s"],
+                "category_name": result_shop["rest"][0]["category"],
+                "shop_image": result_shop["rest"][0]["image_url"]["shop_image1"],
+                "pr": result_shop["rest"][0]["pr"]["pr_short"],
+                "is_favorite": Favorite.objects.filter(user_id=request.user).filter(shop_id=favoriting_shops[i]).count()
+            })
+        except KeyError as e:
+            print('catch KeyError:', e)
 
     return render(request, 'search/favorite_shops.html', {'user': request.user, 'favoriting_cnt': favoriting_cnt, 'favoriting_shops': result})
 

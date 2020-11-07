@@ -1,31 +1,36 @@
 {% extends "search/base.html" %}
 
 {% block content %}
-    <div class="login-section">
-        <div class="login-body">
-            <h4>アカウントのログイン</h4>
-            <a href="{% url 'signup' %}" class="btn btn-danger">アカウントの登録がまだの方はこちら</a><br>
-            <a href="{% url 'social:begin' 'google-oauth2' %}" class="btn btn-danger">Googleアカウントでのログインはこちら</a>
-            
-            {% if form.errors %}
-                <p>ユーザーネームまたはパスワードが間違っています</p>
-            {% endif %}
+<script type="text/javascript">
+    var line = document.getElementById("log");
+    line.classList.add("navbar-display");
+</script>
+
+<div class="login-section">
+    <div class="login-body">
+        <h4>アカウントのログイン</h4>
+        <a href="{% url 'signup' %}" class="btn btn-danger">アカウントの登録がまだの方はこちら</a><br>
+        <a href="{% url 'social:begin' 'google-oauth2' %}" class="btn btn-danger">Googleアカウントでのログインはこちら</a>
         
-            <form method="post" action="{% url 'login' %}">
-            {% csrf_token %}
-                <table class="login-form">
-                <tr>
-                    <td>{{ form.username.label_tag }}</td>
-                    <td>{{ form.username }}</td>
-                </tr>
-                <tr>
-                    <td>{{ form.password.label_tag }}</td>
-                    <td>{{ form.password }}</td>
-                </tr>
-                </table>
-        
-                <input type="submit" class="btn btn-danger" value="ログイン">
-            </form>
-        </div>
+        {% if form.errors %}
+            <p>ユーザーネームまたはパスワードが間違っています</p>
+        {% endif %}
+    
+        <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+            <table class="login-form">
+            <tr>
+                <td>{{ form.username.label_tag }}</td>
+                <td>{{ form.username }}</td>
+            </tr>
+            <tr>
+                <td>{{ form.password.label_tag }}</td>
+                <td>{{ form.password }}</td>
+            </tr>
+            </table>
+    
+            <input type="submit" class="btn btn-danger" value="ログイン">
+        </form>
     </div>
+</div>
 {% endblock %}

@@ -17,12 +17,12 @@
         <!-- .navbar -->
         <nav class="navbar" class="fixed">
             <ul class="navbar-list">
-                <li class="navbar-item"><a class="navbar-link" href="/">検索</a></li>
-                <li class="navbar-item"><a class="navbar-link" href="{% url 'mypage' %}">マイページ</a></li>
+                <li class="navbar-item"><a class="navbar-link" id="search" href="/">検索</a></li>
+                <li class="navbar-item"><a class="navbar-link" id="mypage" href="{% url 'mypage' %}">マイページ</a></li>
                 {% if user.is_authenticated %}
-                <li class="navbar-item"><a class="navbar-link" href="{% url 'logout' %}">ログアウト</a></li>
+                <li class="navbar-item"><a class="navbar-link" id="log" href="{% url 'logout' %}">ログアウト</a></li>
                 {% else %}
-                <li class="navbar-item"><a class="navbar-link" href="{% url 'login' %}">ログイン</a></li>               
+                <li class="navbar-item"><a class="navbar-link" id="log" href="{% url 'login' %}">ログイン</a></li>               
                 {% endif %}
             </ul>
             {% if request.user.is_authenticated %}
