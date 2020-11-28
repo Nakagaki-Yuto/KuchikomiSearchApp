@@ -34,6 +34,7 @@ def MypageView(request):
     """マイページ"""
     return render(request, 'search/mypage.html', {})
 
+
 def SignupView(request):
     """サインアップ機能"""
     if request.method == 'POST':
