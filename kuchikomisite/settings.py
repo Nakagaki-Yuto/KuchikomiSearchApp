@@ -160,4 +160,4 @@ except ImportError:
     pass
 
 if not DEBUG:
-    SECRET_KEY = '$0sg%1vr1qp4xj$d@z&%4$v(md4ce+z4u+_+l#67w@y0s#gwd7'
+    SECRET_KEY = os.environ['SECRET_KEY']
